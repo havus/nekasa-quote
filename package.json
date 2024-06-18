@@ -1,7 +1,10 @@
 {
-  "name": "nuxt-app",
+  "name": "quotes",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20.14.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
