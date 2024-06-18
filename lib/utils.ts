@@ -25,3 +25,15 @@ export function convertDate(date: Date) : string {
 
   return result;
 }
+
+export function intersectionArray(array1: string[], array2: string[]): boolean {
+  for (let i = 0; i < array1.length; i++) {
+    let temp = array1[i];
+
+    if (array2.map((el => el.toLowerCase())).includes(temp.toLowerCase())) {
+      return true;
+    }
+  }
+
+  return false;
+};
