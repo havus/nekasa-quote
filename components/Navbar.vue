@@ -32,13 +32,13 @@ const closeDrawer = () => open.value = false;
 </script>
 
 <template>
-  <header class="sticky top-0 bg-green-50 w-full">
+  <header class="sticky top-0 bg-green-50 w-full z-50">
     <div class="container flex items-center p-2">
       <Drawer direction="left" v-model:open="open">
-        <DrawerTrigger class="h-fit">
-          <Avatar>
+        <DrawerTrigger class="h-[40px] w-[40px] z-10">
+          <Avatar class="h-[40px] w-[40px]">
             <AvatarImage src="https://github.com/radix-vue.png" alt="ava-header" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>AA</AvatarFallback>
           </Avatar>
         </DrawerTrigger>
         <DrawerContent class="text-sm min-w-[250px]">
@@ -46,7 +46,7 @@ const closeDrawer = () => open.value = false;
             <DrawerTitle class="p-4">
               <Avatar>
                 <AvatarImage src="https://github.com/radix-vue.png" alt="ava-drawer" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>AA</AvatarFallback>
               </Avatar>
               <div>
                 <h4 class="text-lg font-bold text-green2-700">John Doe</h4>
@@ -64,7 +64,7 @@ const closeDrawer = () => open.value = false;
                     :to="nav.link"
                     :class="cn(
                       'transition-colors ease-in duration-200 px-3 py-2',
-                      'flex items-center text-slate-700 hover:bg-slate-200 rounded'
+                      'flex items-center text-slate-700 hover:bg-slate-200 rounded',
                     )"
                   >
                     <Icon :name="nav.icon" size="20" />
@@ -74,23 +74,25 @@ const closeDrawer = () => open.value = false;
               </ul>
             </DrawerDescription>
           </DrawerHeader>
-          <DrawerFooter class="flex flex-col">
+          <DrawerFooter class="flex flex-col px-2">
             <nuxt-link
               to="/"
               :class="cn(
-                'transition-colors ease-in duration-200 px-4 py-2',
-                'flex items-center gap-4 text-slate-700 hover:bg-slate-200'
+                'transition-colors ease-in duration-200 px-3 py-2',
+                'flex items-center text-slate-700 hover:bg-slate-200 rounded',
               )"
             >
               <Icon name="tabler:door-exit" size="20" />
-              <span class="font-semibold">Log out</span>
+              <span class="font-semibold ml-3">Log out</span>
             </nuxt-link>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
 
       <div class="grow">
-        <p class="text-center font-bold text-green2-800">NeQu</p>
+        <p class="text-center font-bold text-green2-800 -translate-x-[20px]">
+          NeQu
+        </p>
       </div>
     </div>
   </header>
