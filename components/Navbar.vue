@@ -13,6 +13,19 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
 const navigations = reactive([
   {
     link: '/',
@@ -29,11 +42,13 @@ const navigations = reactive([
 const open = ref(false);
 const closeDrawer = () => open.value = false;
 
+const isLogin = ref(false);
+
 </script>
 
 <template>
   <header class="sticky top-0 bg-green-50 w-full z-50">
-    <div class="container flex items-center p-2">
+    <div class="container flex items-center py-2">
       <Drawer direction="left" v-model:open="open">
         <DrawerTrigger class="h-[40px] w-[40px] z-10">
           <Avatar class="h-[40px] w-[40px]">
@@ -48,7 +63,7 @@ const closeDrawer = () => open.value = false;
                 <AvatarImage src="https://github.com/radix-vue.png" alt="ava-drawer" />
                 <AvatarFallback>AA</AvatarFallback>
               </Avatar>
-              <div>
+              <div v-if="isLogin">
                 <h4 class="text-lg font-bold text-green2-700">John Doe</h4>
                 <p class="text-sm font-normal text-slate-500">@havus</p>
               </div>
@@ -75,16 +90,74 @@ const closeDrawer = () => open.value = false;
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter class="flex flex-col px-2">
-            <nuxt-link
-              to="/"
-              :class="cn(
-                'transition-colors ease-in duration-200 px-3 py-2',
-                'flex items-center text-slate-700 hover:bg-slate-200 rounded',
-              )"
-            >
-              <Icon name="tabler:door-exit" size="20" />
-              <span class="font-semibold ml-3">Log out</span>
-            </nuxt-link>
+            <Dialog>
+              <DialogTrigger>
+                <nuxt-link
+                  v-if="isLogin"
+                  to="/"
+                  :class="cn(
+                    'transition-colors ease-in duration-200 px-3 py-2',
+                    'flex items-center text-slate-700 hover:bg-slate-200 rounded',
+                  )"
+                >
+                  <Icon name="tabler:door-exit" size="20" />
+                  <span class="font-semibold ml-3">Log out</span>
+                </nuxt-link>
+
+                <nuxt-link
+                  v-else
+                  to="/"
+                  :class="cn(
+                    'transition-colors ease-in duration-200 px-3 py-2',
+                    'flex items-center text-slate-700 hover:bg-slate-200 rounded',
+                  )"
+                >
+                  <Icon name="tabler:door-enter" size="20" />
+                  <span class="font-semibold ml-3">Log in</span>
+                </nuxt-link>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader class="items-center">
+                  <DialogTitle class="text-2xl font-semibold text-green2-800">Log In</DialogTitle>
+                  <DialogDescription class="text-slate-500">
+                    Nice to see you again!
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div class="py-5 flex flex-col gap-3">
+                  <div class="grid w-full items-center gap-1">
+                    <Label for="email-or-username" class="font-normal text-xs text-slate-500">
+                      Email or Username
+                    </Label>
+                    <div class="relative w-full items-center">
+                      <Input id="email-or-username" type="text" placeholder="username@mail.com" class="pl-8" />
+                      <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                        <Icon name="tabler:user" size="20" class="text-slate-500" />
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="grid w-full items-center gap-1">
+                    <Label for="password" class="font-normal text-xs text-slate-500">
+                      Password
+                    </Label>
+                    <div class="relative w-full items-center">
+                      <Input id="password" type="password" placeholder="Password" class="pl-8" />
+                      <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2">
+                        <Icon name="tabler:user" size="20" class="text-slate-500" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <DialogFooter class="mt-5">
+                  <Button variant="green" class="w-full" >
+                    <Icon name="tabler:door-enter" size="20" />
+                    <span class="ml-2">Log in</span>
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

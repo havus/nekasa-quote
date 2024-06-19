@@ -133,7 +133,7 @@ const filteredQuotes = computed((): Quote[] => {
     <Toaster />
 
     <div id="jumbotron" class="bg-green-50">
-      <div class="container flex flex-col items-center py-16">
+      <div class="container flex flex-col items-center py-12">
         <div class="flex flex-col items-center gap-2">
           <h3 class="text-2xl font-bold text-green2-800">Search Quotes Around the World</h3>
           <h5 class="text-green2-800">Discover Wisdom from Every Corner of the Globe</h5>
